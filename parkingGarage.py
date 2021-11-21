@@ -1,6 +1,6 @@
-from typing import Type
-from IPython.display import clear_output
-from traitlets.traitlets import Instance
+# # from typing import Type
+# # from IPython.display import clear_output
+# # from traitlets.traitlets import Instance
 
 class Parking_Garage():
     def __init__(self):
@@ -15,11 +15,11 @@ class Parking_Garage():
         clear_output()
         if len(self.parkingSpaces) > 0:
             for i in range(1, len(self.tickets)):
-                ticket = self.tickets.remove(i)
+                self.tickets.remove(i)
                 space = self.parkingSpaces.pop(i)
                 self.currentTicket[space] = self.is_paid 
                 break
-            return ticket
+            return space
         else:
             print("Parking Garage is Full.")
             clear_output()
@@ -30,31 +30,48 @@ class Parking_Garage():
         space = input('Please enter your parking space number: ')
         clear_output()
         if space.isdigit() == False and space > 200 and space not in self.currentTicket:
-            
+            print('Sorry that is not a valid number. Please Enter a valid number.')
             self.payForParking()
         else:
             space = int(space)
 
         flat_rate = 10
-
-
+        payment= self.Payment(flat_rate, space)
+        if payment != 0:
+            print("Your total is now $" + str(payment))
+            return payment
+        else:
+            print('Thank you for your payment!')
+            clear_output()
+            return space
         
     def Payment(self, total, space):
         print('Your total is $' + str(total))
         amount = input('Please enter amount you are paying: ')
         if amount.isdigit() and int(amount) < total:
             total -= int(amount)
-            print('Your total is now $' + str(total))
-            clear_output()
-            self.Payment(total, space)
+            return total
         elif amount.isdigit() == False or int(amount) > total:
             print('Sorry that is not a valid number. Please Enter a valid number.')
             self.Payment(total,space)
         else:
             self.currentTicket[space] = True
-            print('Thank you for your payment!')
-            clear_output()
+            
 
         
-    def LeaveGarage():
+    def LeaveGarage(self, total=0):
+        space = input('Please enter your parking space number: ')
+        space= int(space)
+        if self.currentTicket[space] == True:
+            print("Thanks! Have a nice day!")
+            self.parkingSpaces.append(space)
+            self.parkingSpaces.sort()
+            max_num= max(self.tickets)
+            self.tickets.append(max_num + 1)
+            del self.currentTicket[space]
+        else:
+            total += int(total)
+            self.Payment(self, total, space)
+
+
 
