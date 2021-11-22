@@ -1,6 +1,6 @@
-# # from typing import Type
-# # from IPython.display import clear_output
-# # from traitlets.traitlets import Instance
+from typing import Type
+from IPython.display import clear_output
+from traitlets.traitlets import Instance
 
 class Parking_Garage():
     def __init__(self):
@@ -11,7 +11,7 @@ class Parking_Garage():
 
     def takeTicket(self):
         input('Press enter to start')
-        #clear_output()
+        clear_output()
         if len(self.parkingSpaces) > 0:
             for i in self.parkingSpaces:
                 self.tickets.remove(self.tickets[0])
@@ -22,13 +22,13 @@ class Parking_Garage():
             return space
         else:
             print("Parking Garage is Full.")
-            #clear_output()
+            clear_output()
         
 
 
     def payForParking(self):
         space = int(input('Please enter your parking space number: '))
-        #clear_output()
+        clear_output()
         if space not in self.currentTicket:
             print('Sorry that is not a valid number. Please Enter a valid number.')   
             self.payForParking()
@@ -40,7 +40,7 @@ class Parking_Garage():
             return owe
         else:
             print("Thank you, your payment has been processed.\nYou have 15 minutes to exit the parking garage.")
-            #clear_output()
+            clear_output()
             return space
         
     def Payment(self, space):
@@ -60,6 +60,7 @@ class Parking_Garage():
         
     def LeaveGarage(self):
         space = input('Please enter your parking space number: ')
+        clear_output()
         space= int(space)
         if self.currentTicket[space] == True:
             farewell= "Thanks! Have a nice day!"
@@ -76,10 +77,3 @@ class Parking_Garage():
 
 
 
-car = Parking_Garage()
-print(car.takeTicket())
-print(car.takeTicket())
-print(car.takeTicket())
-print(car.payForParking())
-car.LeaveGarage()
-print(car.parkingSpaces)
