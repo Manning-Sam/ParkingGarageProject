@@ -42,3 +42,7 @@ When the project is completed, commit the final changes, sync all pull requests,
 
 ###### List group responsiblities below:
 ###### Provide name and approxamite line numbers where each person wrote their code
+Day 1- Lines 0-38: 
+Alex driver and typed the code while in collaboration with Samantha as navigator.
+Day 2- Lines 39-75:
+Samantha driver and typed the code while in collaboration with Alex as navigator.
