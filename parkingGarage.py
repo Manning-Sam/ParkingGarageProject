@@ -10,7 +10,7 @@ class Parking_Garage():
 
 
     def takeTicket(self):
-        input('Press enter to start')
+        input('Press enter to print ticket')
         clear_output()
         if len(self.parkingSpaces) > 0:
             for i in self.parkingSpaces:
@@ -63,17 +63,41 @@ class Parking_Garage():
         clear_output()
         space= int(space)
         if self.currentTicket[space] == True:
-            farewell= "Thanks! Have a nice day!"
+            farewell= "Thanks for choosing The Superior Parking Garage! Have a nice day!"
             self.parkingSpaces.append(space)
             self.parkingSpaces.sort()
             max_num= max(self.tickets)
             self.tickets.append(max_num + 1)
             del self.currentTicket[space]
-            return print(farewell)
+            return farewell
         else:
             double_check = self.Payment(space)
         if double_check == 0:
             self.LeaveGarage()  
 
+    def run_Parking_Garage(self):
+        password = "alex"
+        print('Welcome to "The Superior Parking Garage!\n Choose from the following options:\n')
+        start = input('1: Take ticket\n\n2: Pay for parking\n\n'
+        '3: Exit the garage\n\n\t(*For authorized users only*):\n\tEnter password shut down program\n\n'
+        'What would you like to do?: ')
+        clear_output()
+        while True:
+            if start.lower() == password:
+                break
+            elif start.lower() == '1':
+                print(self.takeTicket())
+                self.run_Parking_Garage()
+            elif start.lower() == '2':
+                print(self.payForParking())
+                self.run_Parking_Garage()
+            elif start.lower() == '3':
+                print(self.LeaveGarage())
+                self.run_Parking_Garage()
+            else:
+                print('Input not a valid response.Please enter "take"/"pay"/"exit".')
+                self.run_Parking_Garage()
 
+car = Parking_Garage()   
+car.run_Parking_Garage()
 
